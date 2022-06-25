@@ -40,7 +40,7 @@ export default function App() {
         // troca o número aleatório pelo atual
         list[randomNumber] = list[i];
         // troca o atual pelo aleatório
-        list[i] = String(tmp);
+        list[i] = tmp;
       }
 
       auxArray.push(list);
@@ -98,7 +98,7 @@ export default function App() {
     values.map((value: any[], index: any) => {
       value.map((itemOfArray, index) => {
 
-        if (String(itemOfArray) === sortedValues[`value${index}`] && index <= 6) {
+        if (String(itemOfArray) === String(sortedValues[`value${index}`])) {
           matches++;
 
         }
@@ -109,6 +109,7 @@ export default function App() {
       matches = 0;
 
     })
+   console.log(auxArray);
    
     showAllRegisterOnGameTable();
     return auxArray;
@@ -125,13 +126,13 @@ export default function App() {
 
     arrayOfAccerts.forEach((element, index) => {
       gameMessage += `Jogo [${index + 1}] houveram [${element}] acerto(s) \n`
-      if (Number(element) == 4) {
+      if (Number(element) === 4) {
         quadra++;
       }
-      if (Number(element) == 5) {
+      if (Number(element) === 5) {
         quina++;
       }
-      if (Number(element) == 6) {
+      if (Number(element) === 6) {
         sena++;
       }
 
@@ -144,7 +145,6 @@ export default function App() {
       "Jogo(s) ganho(s) com a quadra : " + quadra + "\n"
     )
   }
-
   async function saveGamesOnDatabase(data: any) {
     gameServiceDatabase.dropTable();
     gameServiceDatabase.createTable();
